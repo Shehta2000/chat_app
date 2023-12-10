@@ -159,56 +159,6 @@ class _RegisterPageState extends State<RegisterPage> {
                 SizedBox(
                   height: 20,
                 ),
-                Center(
-                  child: Container(
-                    padding: EdgeInsets.symmetric(horizontal: 20),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: Divider(
-                            thickness: 1,
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text('Or Continue With'),
-                        ),
-                        Expanded(
-                          child: Divider(
-                            thickness: 1,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    // google button
-                  ],
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Image.asset(
-                      'lib/assets/images/google-logo-png-webinar-optimizing-for-success-google-business-webinar-13.png', // Replace with your Google logo image asset
-                      width: 55,
-                      height: 55,
-                    ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Image.asset(
-                      'lib/assets/images/facebook-logo-13.png', // Replace with your Facebook logo image asset
-                      width: 40,
-                      height: 40,
-                    ),
-                  ],
-                )
               ],
             ),
           ),

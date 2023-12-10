@@ -1,12 +1,20 @@
-import 'package:chat_app/constants.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
 
 class Message {
   final String message;
   final String id;
+  final Timestamp createdAt;
 
-  Message(this.id, {required this.message});
+  Message({required this.id, required this.message, required this.createdAt});
 
-  factory Message.fromJson(jsonData) {
-    return Message(message: jsonData[kMessage], jsonData['id']);
+  factory Message.fromJson(Map<String, dynamic> jsonData) {
+    return Message(
+      id: jsonData['id'] ?? '',
+      message: jsonData['messages'] ?? '',
+      createdAt: jsonData['date'] ?? Timestamp.now(),
+    );
   }
+
+  get imageUrl => null;
 }

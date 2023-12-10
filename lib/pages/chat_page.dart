@@ -1,11 +1,13 @@
 import 'package:chat_app/constants.dart';
 import 'package:chat_app/models/message.dart';
 import 'package:chat_app/widgets/chat_buble.dart';
+import 'package:chat_app/widgets/chat_buble_friend.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class ChatPage extends StatelessWidget {
   static String id = 'ChatPage';
+
   CollectionReference messages =
       FirebaseFirestore.instance.collection(kMessagesCollections);
   TextEditingController controller = TextEditingController();
@@ -23,21 +25,31 @@ class ChatPage extends StatelessWidget {
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           List<Message> messagesList = [];
-          for (int i = 0; i < snapshot.data!.docs.length; i++) {
-            messagesList.add(
-              Message.fromJson(
-                snapshot.data!.docs[i],
-              ),
-            );
+          for (QueryDocumentSnapshot document in snapshot.data!.docs) {
+            messagesList
+                .add(Message.fromJson(document.data() as Map<String, dynamic>));
           }
+
           return Scaffold(
             appBar: AppBar(
+              actions: [
+                IconButton(
+                  onPressed: () {},
+                  constraints: BoxConstraints(maxWidth: 30),
+                  icon: Icon(Icons.search),
+                ),
+                IconButton(
+                  onPressed: () {},
+                  constraints: BoxConstraints(maxWidth: 40),
+                  icon: Icon(Icons.more_vert),
+                )
+              ],
               automaticallyImplyLeading:
                   false, //  // Set this to false to remove the arrow back
               backgroundColor: newColor,
 
               title: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -79,9 +91,10 @@ class ChatPage extends StatelessWidget {
                       );
                       controller.clear();
                       _controller.animateTo(
-                          _controller.position.maxScrollExtent,
-                          duration: Duration(seconds: 1),
-                          curve: Curves.fastOutSlowIn);
+                        _controller.position.maxScrollExtent,
+                        duration: Duration(seconds: 1),
+                        curve: Curves.fastOutSlowIn,
+                      );
                     },
                     decoration: InputDecoration(
                       hintText: 'Type something...',
@@ -90,7 +103,8 @@ class ChatPage extends StatelessWidget {
                         color: newColor,
                       ),
                       border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(16)),
+                        borderRadius: BorderRadius.circular(16),
+                      ),
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(16),
                         borderSide: BorderSide(

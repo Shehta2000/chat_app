@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-const Color kPrimarySwatch = Color.fromARGB(255, 255, 255, 255);
+const Color kPrimarySwatch = Colors.white;
 const String kLogo =
     'lib/assets/images/Green Black Modern Message Chat Bubble Logo.png';
 const kMessagesCollections = 'messages';

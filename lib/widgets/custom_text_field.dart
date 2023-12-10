@@ -14,25 +14,28 @@ class CustomTextFormField extends StatelessWidget {
   bool? obscureText;
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      obscureText: obscureText!,
-      validator: (data) {
-        if (data!.isEmpty) {
-          return 'Field is Required';
-        }
-      },
-      onChanged: onChanged,
-      decoration: InputDecoration(
-        prefixIcon: Icon,
-        hintText: hintText,
-        hintStyle: TextStyle(
-          color: newColor,
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: newColor),
-        ),
-        border: OutlineInputBorder(
-          borderSide: BorderSide(color: newColor),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 6),
+      child: TextFormField(
+        obscureText: obscureText!,
+        validator: (data) {
+          if (data!.isEmpty) {
+            return 'Field is Required';
+          }
+        },
+        onChanged: onChanged,
+        decoration: InputDecoration(
+          prefixIcon: Icon,
+          hintText: hintText,
+          hintStyle: TextStyle(
+            color: newColor,
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: newColor),
+          ),
+          border: OutlineInputBorder(
+            borderSide: BorderSide(color: newColor),
+          ),
         ),
       ),
     );
