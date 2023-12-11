@@ -52,7 +52,11 @@ class WelcomePage extends StatelessWidget {
                     // Handle Google authentication
                     bool success = await signInWithGoogle(context);
                     if (success) {
-                      Navigator.pushNamed(context, ChatPage.id);
+                      _showLoadingDialog(context);
+                      Navigator.pushNamed(context, ChatPage.id).then((_) {
+                        // This code will execute after the ChatPage navigation is complete
+                        Navigator.of(context).pop(); // Hide loading dialog
+                      });
                     } else {
                       print('Google Sign-In was unsuccessful.');
                     }
@@ -71,6 +75,18 @@ class WelcomePage extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+
+  void _showLoadingDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return Center(
+          child: CircularProgressIndicator(),
+        );
+      },
     );
   }
 
